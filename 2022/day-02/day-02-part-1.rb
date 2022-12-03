@@ -8,6 +8,7 @@ input     = File.read(file_path)
 # 1 for Rock, 2 for Paper, and 3 for Scissors) plus the score for the 
 # outcome of the round (0 if you lost, 3 if the round was a draw, and 6 if you won).
 score = {
+     # => play + outcome
     "A X" => 1+3,
     "A Y" => 2+6,
     "A Z" => 3+0,
@@ -19,5 +20,5 @@ score = {
     "C Z" => 3+3
 }
 
-scores = input.split("\n").map{|play| score[play]}
+scores = input.split("\n").map{ |play| score[play] }
 pp scores.sum

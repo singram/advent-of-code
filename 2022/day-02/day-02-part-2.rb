@@ -20,5 +20,5 @@ score = {
     "C Z" => 6+1
 }
 
-scores = input.split("\n").map{|play| score[play]}
+scores = input.split("\n").map{ |play| score[play] }
 pp scores.sum
