@@ -66,10 +66,10 @@ ROUNDS.times do
             monkey[:inspection_counter] += 1
             item = monkey[:op].call(item)
             item = (item/3).floor
-            monkeys[monkey[:dest].call(monkey[:tst].call(item))][:items] << item
+            monkeys[monkey[:dest].call( monkey[:tst].call(item) )][:items] << item
         end
     end
 end
 
-pp monkeys.keys.map{|id| monkeys[id][:inspection_counter]}.max(2).inject(&:*)
+pp monkeys.values.map{|m| m[:inspection_counter]}.max(2).inject(&:*)
 
