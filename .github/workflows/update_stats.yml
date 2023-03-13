@@ -19,7 +19,7 @@ jobs:
         env:
           USER_ID: ${{ secrets.USER_ID }}
           SESSION_ID:  ${{ secrets.SESSION_ID }}
-        run: update_readme_badges.rb
+        run: ruby ./update_readme_badges.rb
       - name: Commit
         run: |
           # Stage the file, commit and push
