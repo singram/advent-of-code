@@ -1,0 +1,29 @@
+name: Update stats
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - name: Install ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+      - name: Update readme stats
+        env:
+          USER_ID: ${{ secrets.USER_ID }}
+          SESSION_ID:  ${{ secrets.SESSION_ID }}
+        run: update_readme_badges.rb
+      - name: Commit
+        run: |
+          # Stage the file, commit and push
+          git config --global user.name "Continuous Integration"
+          git add README.md
+          git commit -m "Updated README AoC stats"
+          git push origin main
