@@ -7,11 +7,11 @@ Solutions are written in [Ruby](https://www.ruby-lang.org/en/).
 <!--START_SECTION:stats-->
 | Year | Attempt between 📅| Stats |
 | ---- | ---- | ---- |
-| 2022 | December  3, 2022 -> December 28, 2022 |  ![](https://img.shields.io/badge/Stars%20⭐-20-yellow)  ![](https://img.shields.io/badge/Days%20completed-10-red) | 
 | 2021 | December  1, 2021 -> September  4, 2022 |  ![](https://img.shields.io/badge/Stars%20⭐-40-yellow)  ![](https://img.shields.io/badge/Days%20completed-19-red) | 
 | 2020 | December  4, 2020 -> April 29, 2021 |  ![](https://img.shields.io/badge/Stars%20⭐-25-yellow)  ![](https://img.shields.io/badge/Days%20completed-12-red) | 
+| 2022 | December  3, 2022 -> December 28, 2022 |  ![](https://img.shields.io/badge/Stars%20⭐-20-yellow)  ![](https://img.shields.io/badge/Days%20completed-10-red) | 
 
-<sub>*(updated @ 2023-03-13 16:36:03 -0400). Inspired by [AoC-badges](https://github.com/J0B10/aoc-badges-action)*</sub>
+<sub>*(updated @ 2023-03-13 22:59:16 +0000). Inspired by [AoC-badges](https://github.com/J0B10/aoc-badges-action)*</sub>
 <!--END_SECTION:stats-->
 
 ### What is Advent of Code?
