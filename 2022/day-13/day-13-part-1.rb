@@ -25,14 +25,56 @@ input     = File.read(file_path)
 # [[]]
 
 # [1,[2,[3,[4,[5,6,7]]]],8,9]
-# [1,[2,[3,[4,[5,6,0]]]],8,9]"
+# [1,[2,[3,[4,[5,6,0]]]],8,9]
+
+# [[8,[[7]]]]
+# [[[[8]]]]
+
+# [[8,[[7]]]]
+# [[[[8],[3]]]]
+# "
+
+# input = "[[8,[[7]]]]
+# [[[[8],[3]]]]
+# "
+
+input = "[[8,[[7]]]]
+[[[[8]]]]
+
+8
+[[8],3]
+
+[[1,2],4]
+[[1],5,5]
+
+[[1,2],4]
+[[[3]],5,5]
+
+[1,2,3,[1,2,3],4,1]
+[1,2,3,[1,2,3],4,0]
+
+[[[1]],1]
+[[1],2]
+
+[[[1]],2]
+[[1],1]
+
+[[1],1]
+[[[1]],2]
+
+[[1],2]
+[[[1]],1]
+"
+
 
 pairs={}
 input.split("\n\n").each_with_index{|p, idx| pairs[idx+1] = p.split("\n").map{|s| eval(s) }}
+pp pairs
 
 def is_array_valid?(l, r)
     l = [l] if l.is_a? Integer
-    r = [l] if r.is_a? Integer
+    r = [r] if r.is_a? Integer
+    pp "#{l} : #{r}"
     return true if l.empty? #&& !r.empty?
     return false if r.empty? #&& !r.empty?
     l.each_with_index do |l_element, idx|
@@ -50,6 +92,8 @@ def is_array_valid?(l, r)
     l.size < r.size ? true : nil
 end
 
+
+
 pairs.each do |pair, lr|
     pp "#{pair} -> #{is_array_valid?(*lr)}"
     pp lr[0]
@@ -58,5 +102,6 @@ pairs.each do |pair, lr|
 end
 
 #6861 is too high
+#6119 is to hight
 
 pp pairs.transform_values {|lr| is_array_valid?(*lr) }.select{|k,v| v==true}.keys.sum
