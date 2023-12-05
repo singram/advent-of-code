@@ -11,7 +11,6 @@ END_TOKEN   = ENV['END_TOKEN'] || "<!--END_SECTION:stats-->"
 README      = ENV['README'] || 'README.md'
 
 data = {}
-cookies = {'session': SESSION_ID }
 years =  Dir.glob('*').select {|f| File.directory?(f) && f =~ /\d{4}/}
 
 begin
@@ -19,7 +18,7 @@ begin
         uri = URI("https://adventofcode.com/#{year}/leaderboard/private/view/#{USER_ID}.json")
         req = Net::HTTP::Get.new(uri)
         req[:Cookie] = CGI::Cookie.new('session', SESSION_ID).to_s
-        res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => true) {|http| http.request(req) }
+        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true, verify_mode: OpenSSL::SSL::VERIFY_NONE) {|http| http.request(req) }
         body = JSON.parse(res.body)
         times = body['members'][USER_ID]['completion_day_level'].flat_map{|day, info| info.map{|day, day_data| day_data['get_star_ts']} }
         data[year.to_i] = { 
@@ -37,7 +36,8 @@ end
 if data
     stats_insert  = "\n| Year | Attempt between 📅| Stats |\n"
     stats_insert += "| ---- | ---- | ---- |\n"
-    data.each do |year, stats|
+    data.keys.sort.each do |year|
+        stats = data[year]
         stats_insert += "| #{year} "
         stats_insert += "| #{Time.at(stats[:first]).strftime("%B %e, %Y")} "
         stats_insert += "-> #{Time.at(stats[:last]).strftime("%B %e, %Y")} | "
